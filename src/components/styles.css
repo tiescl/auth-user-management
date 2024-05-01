@@ -1,0 +1,56 @@
+.users-checkbox:checked {
+    background-color: crimson;
+}
+
+.users-checkbox {
+    width: 20px;
+    height: 20px;
+}
+
+.greeting {
+    text-align: center;
+    margin-top: 90px;
+    margin-bottom: 40px;
+}
+
+nav {
+    height: 70px;
+}
+
+.handler {
+    color: black;
+    border-width: 2px;
+    font-weight: bold;
+}
+
+.register-request {
+    margin-top: 25px;
+}
+
+.reg-link {
+    text-decoration: none;
+}
+
+.log-in {
+    text-align: center;
+    margin-top: 50px;
+}
+
+.log-in-form {
+    width: 35vw;
+    font-size: 20px;
+}
+
+.register-form {
+    width: 35vw;
+    font-size: 20px;
+}
+
+.register {
+    text-align: center;
+    margin-top: 50px;
+}
+
+.login-error {
+    margin-top: 10px;
+}
