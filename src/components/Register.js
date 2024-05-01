@@ -17,7 +17,9 @@ export default function Register() {
     const [fullNameWarning, setFullNameWarning] = useState(""),
           [emailWarning, setEmailWarning] = useState(""),
           [passwordWarning, setPasswordWarning] = useState(""),
-          [confirmPasswordWarning, setConfirmPasswordWarning] = useState("")
+          [confirmPasswordWarning, setConfirmPasswordWarning] = useState(""),
+          [errorMessage, setErrorMessage] = useState(""),
+          [showErrorMessage, setShowErrorMessage] = useState(false);
 
     const handleFullNameChange = (e) => {
         if (e.target.value.length === 0) {
@@ -62,6 +64,20 @@ export default function Register() {
         }
     }
 
+    const getHumanReadableError = (error) => {
+        console.log(error);
+        switch (error) {
+            case 'auth/email-already-in-use':
+                return (
+                    `The email you provided is already in use. Consider joining us with another one.`
+                )
+            default:
+                return (
+                    'Invalid credentials. Please try again.'
+                )
+        }
+    }
+    
     const handleSubmit = async () => {
         const options = {
             day: "numeric",
@@ -87,8 +103,9 @@ export default function Register() {
                         })
                         navigate('/login');
                     })
-                    .catch((e) => {
-                        console.log(e);
+                    .catch((error) => {
+                        setErrorMessage(getHumanReadableError(error.code));
+                        setShowErrorMessage(true);
                     })
             }
         }
@@ -105,6 +122,7 @@ export default function Register() {
                     value={fullNameRef}
                     onChange={handleFullNameChange}
                     errorMsg={fullNameWarning}
+                    onFocus={() => setShowErrorMessage(false)}
                 />
                 <FormField
                     type="email"
@@ -113,6 +131,7 @@ export default function Register() {
                     value={emailRef}
                     onChange={handleEmailChange}
                     errorMsg={emailWarning}
+                    onFocus={() => setShowErrorMessage(false)}
                 />
                 <FormField
                     type="password"
@@ -121,6 +140,7 @@ export default function Register() {
                     value={passwordRef}
                     onChange={handlePasswordChange}
                     errorMsg={passwordWarning}
+                    onFocus={() => setShowErrorMessage(false)}
                 />
                 <FormField
                     type="password"
@@ -129,7 +149,9 @@ export default function Register() {
                     value={confirmPasswordRef}
                     onChange={handleConfirmPasswordChange}
                     errorMsg={confirmPasswordWarning}
+                    onFocus={() => setShowErrorMessage(false)}
                 />
+                {showErrorMessage && <h5 className="text-danger login-error">{errorMessage}</h5>}
                 <br/>
                 <button type="button" className="btn btn-primary form-control" onClick={handleSubmit}>Register</button>
                 <h4 className="register-request">Got an account? <Link className="reg-link text-primary" to='/login'>Log in!</Link></h4>
