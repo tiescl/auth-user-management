@@ -40,8 +40,8 @@ export default function Register() {
     }
 
     const handlePasswordChange = (e) => {
-        if (e.target.value.length < 8) {
-            setPasswordWarning("Password must be at least 8 characters long.")
+        if (e.target.value.length < 1) {
+            setPasswordWarning("Password must be non-empty.")
         } else {
             setPasswordWarning("")
         }
