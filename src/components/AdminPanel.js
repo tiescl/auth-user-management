@@ -25,6 +25,7 @@ function AdminPanel() {
                     email: d.email,
                     status: d.status,
                     last_login: d.last_login,
+                    registerDate: d.registerDate
                 });
             });
             setUserList(usrs);
@@ -114,6 +115,27 @@ function AdminPanel() {
         }
     }
 
+    function updateLastLogin(userEmail) {
+        const options = {
+            day: "numeric",
+            weekday: "short",
+            year: "numeric",
+            timeZone: "UTC",
+            timeZoneName: "short"
+        }
+
+        const userRef = doc(db, `users/${userEmail}`);
+        const now = new Date();
+      
+        updateDoc(userRef, {
+          last_login: now.toLocaleTimeString() + " " + now.toLocaleDateString("en-US", options),
+        })
+        .catch((error) => {
+          console.error("Error updating last login:", error);
+        });
+    }
+      
+
     useEffect(() => {
         onAuthStateChanged(auth, (usr) => {
             if (usr) {
@@ -122,6 +144,7 @@ function AdminPanel() {
                         getDoc(doc(db, "users", usr.email)).then((doc) => {
                             if (doc.exists()) {
                                 setUser(doc.data());
+                                updateLastLogin(usr.email);
                             }
                         })
                         fetchData();
@@ -164,6 +187,7 @@ function AdminPanel() {
                             <th>Full Name</th>
                             <th>E-mail</th>
                             <th>Last login</th>
+                            <th>Register Date</th>
                             <th>Status</th>
                         </tr>
                     </thead>

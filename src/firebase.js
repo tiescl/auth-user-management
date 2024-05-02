@@ -3,7 +3,7 @@ import { getAuth } from "firebase/auth"
 import { getFirestore } from "firebase/firestore"
 
 const firebaseConfig = {
-    apiKey: "AIzaSyDt-sgL6Zp9W45_l3gL4E7FzoVygnu4n9c",
+    apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
     authDomain: "itransition-task4-8ce0b.firebaseapp.com",
     projectId: "itransition-task4-8ce0b",
     storageBucket: "itransition-task4-8ce0b.appspot.com",

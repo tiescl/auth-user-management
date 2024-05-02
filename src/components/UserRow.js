@@ -1,3 +1,4 @@
+import StatusWrapper from './StatusWrapper';
 import './styles.css'
 
 export default function UserRow({ user, selectedUsers, onChange }) {
@@ -7,7 +8,8 @@ export default function UserRow({ user, selectedUsers, onChange }) {
             <td>{user.fullName}</td>
             <td>{user.email}</td>
             <td>{user.last_login}</td>
-            <td>{user.status}</td>
+            <td>{user.registerDate}</td>
+            <td><StatusWrapper status={user.status} accentColor={user.status === 'blocked' ? 'red' : 'darkorange'}/></td>
         </tr>
     );
 }

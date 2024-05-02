@@ -94,12 +94,16 @@ export default function Register() {
                       password = passwordRef.current.value
                 createUserWithEmailAndPassword(auth, email, password)
                     .then(() => {
-                        const date = new Date();
+                        const creationTimeStamp = auth.currentUser.metadata.creationTime,
+                              lastSignInTimestamp = auth.currentUser.metadata.lastSignInTime;
+                        const creationDate = new Date(creationTimeStamp),
+                              last_login = new Date(lastSignInTimestamp);
                         setDoc(doc(db, `users/${email}`), {
                             fullName: fullName,
                             email: email,
                             status: 'active',
-                            last_login: date.toLocaleTimeString() + " " + date.toLocaleDateString("en-US", options)
+                            last_login: last_login.toLocaleTimeString() + " " + last_login.toLocaleDateString("en-US", options),
+                            registerDate: creationDate.toLocaleTimeString() + " " + creationDate.toLocaleDateString("en-US", options)
                         })
                         navigate('/login');
                     })
