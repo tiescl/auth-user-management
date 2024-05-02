@@ -163,14 +163,14 @@ function AdminPanel() {
 
     return (
         <>
-            <nav className="navbar navbar-light bg-light navbar-expand-sm fixed-top justify-content-end" style={{paddingRight: "20px"}}>
+            <nav className="navbar navbar-light bg-light navbar-expand-sm fixed-top justify-content-end">
                 <ul className="navbar-nav align-items-center gap-3">
                     <li className="nav-item">Hello, <strong>{user?.fullName}</strong></li>
                     <li className="nav-item"><Link to='/login' onClick={() => signOut(auth)} className="btn btn-primary">Log out</Link></li>
                 </ul>
             </nav>
 
-            <h1 className="greeting">Wilkommen!</h1>
+            <h1 className="greeting">Willkommen!</h1>
 
             <div className="container">
                 <button className="btn handler btn-outline-warning mb-2 mx-1" onClick={handleBlock}>Block 🔒</button>
