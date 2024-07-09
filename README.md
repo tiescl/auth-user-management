@@ -1,11 +1,10 @@
-# Implementation of the Task 4 (Itransition)
-
-## Main Features
+# Implementation of the Task 4 (itransition-internship)
 
 ### Users can:
-* Register
-* Sign-in
-* Sign-out
-* Administer various tasks such as user blocking, unblocking, and deletion once they access the Admin Panel
 
-Thanks for Google's Firebase (with it's impeccable documentation) for helping to materialize this project into reality.
+- Register
+- Sign-in
+- Sign-out
+- Administer various tasks such as user blocking, unblocking, and deletion once they access the Admin Panel
+
+The Project uses Google Firebase as a data store.
